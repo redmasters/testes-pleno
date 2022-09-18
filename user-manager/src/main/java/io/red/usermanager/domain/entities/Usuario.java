@@ -1,13 +1,14 @@
 package io.red.usermanager.domain.entities;
 
-import com.sun.istack.NotNull;
-
 public class Usuario {
-    private final Long id;
-    private final String nome;
-    private final String email;
-    private final String senha;
-    private final String nomeUsuario;
+    private Long id;
+    private String nome;
+    private String email;
+    private String senha;
+    private String nomeUsuario;
+
+    public Usuario() {
+    }
 
     public Usuario(Long id, String nome, String email, String senha, String nomeUsuario) {
         this.id = id;
@@ -64,6 +65,8 @@ public class Usuario {
         }
     }
 
+
+
     public Long getId() {
         return id;
     }
@@ -82,5 +85,25 @@ public class Usuario {
 
     public String getNomeUsuario() {
         return nomeUsuario;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 }

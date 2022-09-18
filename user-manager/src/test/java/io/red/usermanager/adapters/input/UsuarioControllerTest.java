@@ -54,8 +54,8 @@ class UsuarioControllerTest {
                 .senha("123456")
                 .build();
 
-        BDDMockito.given(usuarioRepository.criar(Mockito.any(Usuario.class)))
-                .willReturn(usuarioSalvo);
+//        BDDMockito.given(usuarioRepository.criar(Mockito.any(Usuario.class)))
+//                .willReturn(usuarioSalvo);
         String json = new ObjectMapper().writeValueAsString(novoUsuario);
 
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders

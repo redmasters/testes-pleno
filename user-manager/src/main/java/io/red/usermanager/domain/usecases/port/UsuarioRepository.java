@@ -5,6 +5,6 @@ import io.red.usermanager.domain.entities.Usuario;
 public interface UsuarioRepository {
 
     Usuario listar();
-    Usuario criar(Usuario usuario);
+    void criar(Usuario usuario);
 
 }
