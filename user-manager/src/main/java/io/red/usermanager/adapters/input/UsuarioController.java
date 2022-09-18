@@ -3,8 +3,8 @@ package io.red.usermanager.adapters.input;
 import io.red.usermanager.domain.entities.Usuario;
 import io.red.usermanager.domain.usecases.ListarUsuario;
 import io.red.usermanager.domain.usecases.NovoUsuario;
-import org.aspectj.lang.annotation.DeclareWarning;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,8 +21,9 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void criar(@RequestBody Usuario usuario) {
+    public ResponseEntity<String> criar(@RequestBody Usuario usuario) {
         novoUsuario.criar(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Usuario criado com sucesso");
     }
 
     @GetMapping

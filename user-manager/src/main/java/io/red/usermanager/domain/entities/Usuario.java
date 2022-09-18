@@ -1,5 +1,7 @@
 package io.red.usermanager.domain.entities;
 
+import com.sun.istack.NotNull;
+
 public class Usuario {
     private final Long id;
     private final String nome;
@@ -15,7 +17,7 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public Usuario(UsuarioBuilder builder){
+    public Usuario(UsuarioBuilder builder) {
         this.id = builder.id;
         this.nome = builder.nome;
         this.email = builder.email;
@@ -23,7 +25,8 @@ public class Usuario {
         this.nomeUsuario = builder.nomeUsuario;
 
     }
-    public static class UsuarioBuilder{
+
+    public static class UsuarioBuilder {
         private Long id;
         private String nome;
         private String email;
@@ -55,7 +58,7 @@ public class Usuario {
             return this;
         }
 
-        public Usuario build(){
+        public Usuario build() {
             Usuario usuario = new Usuario(this);
             return usuario;
         }
