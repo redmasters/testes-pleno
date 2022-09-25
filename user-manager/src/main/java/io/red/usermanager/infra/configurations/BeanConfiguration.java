@@ -1,7 +1,9 @@
 package io.red.usermanager.infra.configurations;
 
+import io.red.usermanager.app.controllers.v1.response.UsuarioResponse;
 import io.red.usermanager.core.repositories.UsuarioRepository;
 import io.red.usermanager.core.usecases.CriarUsuario;
+import io.red.usermanager.core.usecases.ListarUsuario;
 import io.red.usermanager.infra.repositories.UsuarioRepositoryImpl;
 import io.red.usermanager.infra.repositories.jpa.UsuarioJpaRepository;
 import org.springframework.context.annotation.Bean;
@@ -18,5 +20,11 @@ public class BeanConfiguration {
     public CriarUsuario criarUsuario(UsuarioRepositoryImpl usuario) {
         return new CriarUsuario(usuario);
     }
+
+    @Bean
+    public ListarUsuario listarUsuario(UsuarioRepositoryImpl listar){
+        return new ListarUsuario(listar);
+    }
+
 
 }

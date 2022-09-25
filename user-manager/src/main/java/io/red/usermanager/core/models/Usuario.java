@@ -42,13 +42,14 @@ public class Usuario {
         );
     }
 
-    public UsuarioEntity toEntity(String nome, String nomeUsuario, String senha){
+    public UsuarioEntity toEntity(String nome, String nomeUsuario, String senha) {
         return new UsuarioEntity(
                 this.nome = nome,
                 this.nomeUsuario = nomeUsuario,
                 this.senha = senha
         );
     }
+
     @Nullable
     public Long getId() {
         return id;
@@ -73,6 +74,7 @@ public class Usuario {
 
     public UsuarioResponse toResponse() {
         return new UsuarioResponse(
+                this.id,
                 this.nome,
                 this.nomeUsuario,
                 this.dataCriacao

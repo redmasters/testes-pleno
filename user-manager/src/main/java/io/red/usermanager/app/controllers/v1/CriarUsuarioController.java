@@ -2,12 +2,9 @@ package io.red.usermanager.app.controllers.v1;
 
 import io.red.usermanager.app.controllers.v1.request.CriarUsuarioRequest;
 import io.red.usermanager.app.controllers.v1.response.UsuarioResponse;
-import io.red.usermanager.core.models.Usuario;
 import io.red.usermanager.core.usecases.CriarUsuario;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/usuario")
@@ -20,7 +17,8 @@ public class CriarUsuarioController {
     }
 
     @PostMapping
-    public UsuarioResponse criar(@RequestBody CriarUsuarioRequest request){
+    @ResponseStatus(HttpStatus.CREATED)
+    public UsuarioResponse criar(@RequestBody CriarUsuarioRequest request) {
         final var usuario = criarUsuario.criar(request.toModel());
         return usuario.toResponse();
     }
