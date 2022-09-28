@@ -15,6 +15,7 @@ public class UsuarioEntity {
     private Long id;
     private String nome;
     private String nomeUsuario;
+    private String email;
     private String senha;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
@@ -26,6 +27,8 @@ public class UsuarioEntity {
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
     }
+
+
 
     public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String senha, LocalDateTime dataCriacao) {
         this.id = id;
@@ -66,5 +69,7 @@ public class UsuarioEntity {
         return dataCriacao;
     }
 
-
+    public String getEmail() {
+        return email;
+    }
 }

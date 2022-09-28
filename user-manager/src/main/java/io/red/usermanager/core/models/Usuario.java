@@ -11,6 +11,7 @@ public class Usuario {
     private Long id;
     private String nome;
     private String nomeUsuario;
+    private String email;
     private String senha;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
@@ -31,6 +32,12 @@ public class Usuario {
         this.dataCriacao = dataCriacao;
     }
 
+    public Usuario(String nome, String nomeUsuario, String email, String senha) {
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+    }
 
     public UsuarioEntity toEntity(@Nullable Long id, String nome, String nomeUsuario, String senha, LocalDateTime dataCriacao) {
         return new UsuarioEntity(
@@ -48,6 +55,11 @@ public class Usuario {
                 this.nomeUsuario = nomeUsuario,
                 this.senha = senha
         );
+    }
+
+
+    public String getEmail() {
+        return email;
     }
 
     @Nullable

@@ -1,8 +1,10 @@
 package io.red.usermanager.infra.repositories;
 
+import io.red.usermanager.core.exceptions.UsuarioException;
 import io.red.usermanager.core.models.Usuario;
 import io.red.usermanager.core.models.UsuarioFilter;
 import io.red.usermanager.core.repositories.UsuarioRepository;
+import io.red.usermanager.core.validator.ValidaUsuario;
 import io.red.usermanager.infra.repositories.jpa.UsuarioJpaRepository;
 
 import java.util.ArrayList;
@@ -17,6 +19,18 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
     @Override
     public Usuario salvar(Usuario usuario) {
+        ValidaUsuario.validarCriacaoUsuario(usuario);
+        final var isUsuario = usuarioJpaRepository.existsByNomeUsuario(usuario.getNomeUsuario());
+        final var isEmail = usuarioJpaRepository.existsByEmail(usuario.getEmail());
+
+        if(isUsuario.isPresent()){
+            throw new UsuarioException("Nome de usuario ja existe");
+        }
+
+        if(isEmail.isPresent()){
+            throw new UsuarioException("Email em uso");
+        }
+
         final var usuarioEntity = usuario.toEntity(
                 usuario.getNomeUsuario(),
                 usuario.getNome(),
