@@ -39,20 +39,22 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public UsuarioEntity toEntity(@Nullable Long id, String nome, String nomeUsuario, String senha, LocalDateTime dataCriacao) {
+    public UsuarioEntity toEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
         return new UsuarioEntity(
                 this.id = id,
                 this.nome = nome,
                 this.nomeUsuario = nomeUsuario,
+                this.email = email,
                 this.senha = senha,
                 this.dataCriacao = dataCriacao
         );
     }
 
-    public UsuarioEntity toEntity(String nome, String nomeUsuario, String senha) {
+    public UsuarioEntity toEntity(String nome, String nomeUsuario, String email, String senha) {
         return new UsuarioEntity(
                 this.nome = nome,
                 this.nomeUsuario = nomeUsuario,
+                this.email = email,
                 this.senha = senha
         );
     }
@@ -89,6 +91,7 @@ public class Usuario {
                 this.id,
                 this.nome,
                 this.nomeUsuario,
+                this.email,
                 this.dataCriacao
         );
     }

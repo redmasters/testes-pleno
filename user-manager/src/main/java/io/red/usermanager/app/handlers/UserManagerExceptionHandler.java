@@ -1,4 +1,4 @@
-package io.red.usermanager.app.controllers.handlers;
+package io.red.usermanager.app.handlers;
 
 import io.red.usermanager.core.exceptions.UsuarioException;
 import io.red.usermanager.core.exceptions.ValidacaoUsuarioException;

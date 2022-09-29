@@ -1,4 +1,4 @@
-package io.red.usermanager.app.controllers.handlers;
+package io.red.usermanager.app.handlers;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -1,4 +1,4 @@
-package io.red.usermanager.app.controllers.handlers;
+package io.red.usermanager.app.handlers;
 
 public enum ProblemType {
 

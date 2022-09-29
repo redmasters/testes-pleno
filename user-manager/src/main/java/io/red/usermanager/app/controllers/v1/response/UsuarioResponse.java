@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 public record UsuarioResponse(
         Long id,
         String nome,
-        String usuario,
+        String nomeUsuario,
+        String email,
         LocalDateTime dataCriacao
 ) {
 }

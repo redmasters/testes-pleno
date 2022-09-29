@@ -22,18 +22,27 @@ public class UsuarioEntity {
     public UsuarioEntity() {
     }
 
-    public UsuarioEntity(String nome, String nomeUsuario, String senha) {
+
+    public UsuarioEntity(String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+        this.dataCriacao = dataCriacao;
+    }
+
+    public UsuarioEntity(String nome, String nomeUsuario, String email, String senha) {
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
         this.senha = senha;
     }
 
-
-
-    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String senha, LocalDateTime dataCriacao) {
+    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
+        this.email = email;
         this.senha = senha;
         this.dataCriacao = dataCriacao;
     }
