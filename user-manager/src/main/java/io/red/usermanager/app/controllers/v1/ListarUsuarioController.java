@@ -3,10 +3,7 @@ package io.red.usermanager.app.controllers.v1;
 import io.red.usermanager.app.controllers.v1.response.UsuarioResponse;
 import io.red.usermanager.core.usecases.ListarUsuario;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +27,12 @@ public class ListarUsuarioController {
            usuarioResponseList.add(usuario.toResponse());
        });
        return usuarioResponseList;
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioResponse usuarioPor(@PathVariable Long id){
+        return listarUsuario.usuarioPor(id).toResponse();
     }
 
 }

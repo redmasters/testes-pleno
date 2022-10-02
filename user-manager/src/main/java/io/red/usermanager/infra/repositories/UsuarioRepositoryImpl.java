@@ -51,4 +51,11 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
         return usuarioList;
     }
 
+    @Override
+    public Usuario buscarPor(Long id) {
+        final var usuario = usuarioJpaRepository.findById(id)
+                .orElseThrow(() -> new UsuarioException("Usuario com id " + id + " nao encontrado"));
+        return usuario.toModel();
+    }
+
 }

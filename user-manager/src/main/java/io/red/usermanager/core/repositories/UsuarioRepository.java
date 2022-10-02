@@ -8,4 +8,5 @@ import java.util.List;
 public interface UsuarioRepository {
     Usuario salvar(Usuario usuario);
     List<Usuario> listarTodos();
+    Usuario buscarPor(Long id);
 }

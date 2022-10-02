@@ -17,4 +17,8 @@ public class ListarUsuario {
     public List<Usuario> listarTodos(){
         return usuarioRepository.listarTodos();
     }
+
+    public Usuario usuarioPor(Long id){
+        return usuarioRepository.buscarPor(id);
+    }
 }
