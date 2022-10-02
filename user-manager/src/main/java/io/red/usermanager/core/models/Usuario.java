@@ -18,16 +18,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nome, String nomeUsuario, String senha) {
-        this.nome = nome;
-        this.nomeUsuario = nomeUsuario;
-        this.senha = senha;
-    }
 
-    public Usuario(@Nullable Long id, String nome, String nomeUsuario, String senha, LocalDateTime dataCriacao) {
+    public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
+        this.email = email;
         this.senha = senha;
         this.dataCriacao = dataCriacao;
     }
@@ -58,10 +54,14 @@ public class Usuario {
                 this.senha = senha
         );
     }
-
-
-    public String getEmail() {
-        return email;
+    public UsuarioResponse toResponse() {
+        return new UsuarioResponse(
+                this.id,
+                this.nome,
+                this.nomeUsuario,
+                this.email,
+                this.dataCriacao
+        );
     }
 
     @Nullable
@@ -77,22 +77,15 @@ public class Usuario {
         return nomeUsuario;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String getSenha() {
         return senha;
     }
 
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
-    }
-
-
-    public UsuarioResponse toResponse() {
-        return new UsuarioResponse(
-                this.id,
-                this.nome,
-                this.nomeUsuario,
-                this.email,
-                this.dataCriacao
-        );
     }
 }

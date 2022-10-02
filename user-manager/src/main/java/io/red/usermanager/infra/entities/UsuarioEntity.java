@@ -52,6 +52,7 @@ public class UsuarioEntity {
                 this.id,
                 this.nome,
                 this.nomeUsuario,
+                this.email,
                 this.senha,
                 this.dataCriacao
         );

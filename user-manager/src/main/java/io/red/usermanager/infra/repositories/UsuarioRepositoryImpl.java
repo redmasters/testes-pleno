@@ -27,7 +27,6 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
             throw new ValidacaoUsuarioException(usuario.getNomeUsuario() + " ja esta em uso");
         }
 
-
         final var usuarioEntity = usuario.toEntity(
                 usuario.getNome(),
                 usuario.getNomeUsuario(),
