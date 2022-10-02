@@ -21,10 +21,14 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     public Usuario salvar(Usuario usuario) {
         ValidaUsuario.validarCriacaoUsuario(usuario);
         final var isUsuario = usuarioJpaRepository.findAllByNomeUsuario(usuario.getNomeUsuario());
-        final var isEmail = usuarioJpaRepository.existsByEmail(usuario.getEmail());
+        final var isEmail = usuarioJpaRepository.findAllByEmail(usuario.getEmail());
 
         if(isUsuario.isPresent()){
-            throw new ValidacaoUsuarioException(usuario.getNomeUsuario() + " ja esta em uso");
+            throw new ValidacaoUsuarioException(usuario.getNomeUsuario() + " ja esta em uso.");
+        }
+
+        if(isEmail.isPresent()){
+            throw new ValidacaoUsuarioException(usuario.getEmail() + " esta em uso.");
         }
 
         final var usuarioEntity = usuario.toEntity(
