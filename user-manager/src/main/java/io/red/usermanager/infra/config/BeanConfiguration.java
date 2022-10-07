@@ -1,6 +1,8 @@
 package io.red.usermanager.infra.config;
 
 import io.red.usermanager.core.usecases.CriarUsuario;
+import io.red.usermanager.core.usecases.DeletarUsuario;
+import io.red.usermanager.core.usecases.EditarUsuario;
 import io.red.usermanager.core.usecases.ListarUsuario;
 import io.red.usermanager.infra.repositories.UsuarioRepositoryImpl;
 import io.red.usermanager.infra.repositories.jpa.UsuarioJpaRepository;
@@ -17,6 +19,15 @@ public class BeanConfiguration {
     @Bean
     public CriarUsuario criarUsuario(UsuarioRepositoryImpl usuario) {
         return new CriarUsuario(usuario);
+    }
+
+    @Bean
+    public DeletarUsuario deletarUsuario(UsuarioRepositoryImpl deletar){
+        return new DeletarUsuario(deletar);
+    }
+    @Bean
+    public EditarUsuario editarUsuario(UsuarioRepositoryImpl editar){
+        return new EditarUsuario(editar);
     }
 
     @Bean

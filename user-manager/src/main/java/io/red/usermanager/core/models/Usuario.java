@@ -13,11 +13,21 @@ public class Usuario {
     private String nomeUsuario;
     private String email;
     private String senha;
+    private boolean exluido;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     public Usuario() {
     }
 
+    public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean exluido, LocalDateTime dataCriacao) {
+        this.id = id;
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+        this.exluido = exluido;
+        this.dataCriacao = dataCriacao;
+    }
 
     public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
         this.id = id;
@@ -29,6 +39,14 @@ public class Usuario {
     }
 
     public Usuario(String nome, String nomeUsuario, String email, String senha) {
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha) {
+        this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
@@ -54,6 +72,17 @@ public class Usuario {
                 this.senha = senha
         );
     }
+
+    public UsuarioEntity toEntity(Long id, String nome, String nomeUsuario, String email, String senha) {
+        return new UsuarioEntity(
+                this.id = id,
+                this.nome = nome,
+                this.nomeUsuario = nomeUsuario,
+                this.email = email,
+                this.senha = senha
+        );
+    }
+
     public UsuarioResponse toResponse() {
         return new UsuarioResponse(
                 this.id,
@@ -87,5 +116,9 @@ public class Usuario {
 
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
+    }
+
+    public boolean isExluido() {
+        return exluido;
     }
 }

@@ -17,11 +17,27 @@ public class UsuarioEntity {
     private String nomeUsuario;
     private String email;
     private String senha;
+
+    private boolean excluido;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     public UsuarioEntity() {
     }
 
+    public UsuarioEntity(@Nullable Long id, boolean excluido) {
+        this.id = id;
+        this.excluido = excluido;
+    }
+
+    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean excluido, LocalDateTime dataCriacao) {
+        this.id = id;
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+        this.excluido = excluido;
+        this.dataCriacao = dataCriacao;
+    }
 
     public UsuarioEntity(String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
         this.nome = nome;
@@ -32,6 +48,14 @@ public class UsuarioEntity {
     }
 
     public UsuarioEntity(String nome, String nomeUsuario, String email, String senha) {
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha) {
+        this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
@@ -81,5 +105,28 @@ public class UsuarioEntity {
 
     public String getEmail() {
         return email;
+    }
+
+    public boolean isExcluido() {
+        return excluido;
+    }
+
+    public UsuarioEntity toEntity(Long id, String nome, String nomeUsuario, String email, String senha) {
+        return new UsuarioEntity(
+                this.id = id,
+                this.nome = nome,
+                this.nomeUsuario = nomeUsuario,
+                this.email = email,
+                this.senha = senha
+        );
+
+
+    }
+
+    public UsuarioEntity toDelete(Long id, boolean b) {
+        return new UsuarioEntity(
+                this.id = id,
+                this.excluido = b
+        );
     }
 }
