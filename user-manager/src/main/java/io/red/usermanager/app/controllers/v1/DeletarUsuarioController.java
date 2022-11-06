@@ -1,6 +1,7 @@
 package io.red.usermanager.app.controllers.v1;
 
 import io.red.usermanager.core.usecases.DeletarUsuario;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +15,11 @@ public class DeletarUsuarioController {
         this.deletarUsuario = deletarUsuario;
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> deletar(
-            @RequestParam(name = "id") Long id,
-            @RequestParam(name = "excluido") boolean excluido){
-        return deletarUsuario.deletarPor(id, excluido);
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<String> exclusaoLogica(
+            @PathVariable Long id,
+            @RequestParam(name = "excluir") boolean excluir){
+        return deletarUsuario.deletarPor(id, excluir);
     }
 }

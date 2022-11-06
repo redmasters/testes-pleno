@@ -18,7 +18,7 @@ public class UsuarioEntity {
     private String email;
     private String senha;
 
-    private boolean excluido;
+    private boolean excluido = false;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     public UsuarioEntity() {
@@ -123,10 +123,20 @@ public class UsuarioEntity {
 
     }
 
-    public UsuarioEntity toDelete(Long id, boolean b) {
+    public UsuarioEntity toDelete(Long id, String nome,
+                                  String nomeUsuario,
+                                  String email,
+                                  String senha,
+                                  boolean excluir,
+                                  LocalDateTime dataCriacao) {
         return new UsuarioEntity(
                 this.id = id,
-                this.excluido = b
+                this.nome = nome,
+                this.nomeUsuario = nomeUsuario,
+                this.email = email,
+                this.senha = senha,
+                this.excluido = excluir,
+                this.dataCriacao = dataCriacao
         );
     }
 }
