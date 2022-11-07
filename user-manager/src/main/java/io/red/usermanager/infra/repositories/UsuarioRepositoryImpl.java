@@ -88,7 +88,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public void delecaoLogicaPor(Long id, boolean excluido) {
+    public void delecaoLogicaPor(Long id, boolean ativo) {
         final var usuario = usuarioJpaRepository
                 .findById(id)
                 .orElseThrow(() -> new UsuarioException("Usuario nao encontrado"));
@@ -99,7 +99,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
                 usuario.getNomeUsuario(),
                 usuario.getEmail(),
                 usuario.getSenha(),
-                true,
+                false,
                 usuario.getDataCriacao()
         );
         LOGGER.info("Deletando usuario: id {} - {}", usuario.getId(), usuario.getNomeUsuario());

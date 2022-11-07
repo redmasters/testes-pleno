@@ -19,7 +19,7 @@ public class DeletarUsuarioController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> exclusaoLogica(
             @PathVariable Long id,
-            @RequestParam(name = "excluir") boolean excluir){
-        return deletarUsuario.deletarPor(id, excluir);
+            @RequestParam(name = "ativo") boolean ativo){
+        return deletarUsuario.deletarPor(id, ativo);
     }
 }
