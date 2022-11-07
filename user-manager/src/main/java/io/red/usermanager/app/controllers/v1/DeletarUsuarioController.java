@@ -15,10 +15,10 @@ public class DeletarUsuarioController {
         this.deletarUsuario = deletarUsuario;
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> exclusaoLogica(
-            @PathVariable Long id,
+            @RequestParam(name = "idUsuario") Long id,
             @RequestParam(name = "ativo") boolean ativo){
         return deletarUsuario.deletarPor(id, ativo);
     }
