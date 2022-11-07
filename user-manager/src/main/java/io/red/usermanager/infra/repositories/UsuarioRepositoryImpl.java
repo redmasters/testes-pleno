@@ -48,9 +48,12 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
     @Override
     public List<Usuario> listarTodos() {
+       LOGGER.info("Buscando todos os usuarios");
+
         final var usuarios = usuarioJpaRepository.findAllByAtivo(true);
         List<Usuario> usuarioList = new ArrayList<>();
 
+        LOGGER.info("{} encontrados.", usuarios.size());
         usuarios.forEach(usuario -> {
             usuarioList.add(usuario.toModel());
             LOGGER.info("Listando usuario: {}", usuario.getNomeUsuario());
@@ -92,6 +95,8 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
     @Override
     public void delecaoLogicaPor(Long id, boolean ativo) {
+        LOGGER.info("Buscando usuario de id: {} para deletar", id);
+
         final var usuario = usuarioJpaRepository
                 .findById(id)
                 .orElseThrow(() -> new UsuarioException("Usuario nao encontrado"));
