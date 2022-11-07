@@ -15,7 +15,7 @@ public class DeletarUsuarioController {
         this.deletarUsuario = deletarUsuario;
     }
 
-    @PatchMapping
+    @PatchMapping("deletar")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> exclusaoLogica(
             @RequestParam(name = "idUsuario") Long id,

@@ -62,8 +62,11 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
     @Override
     public Usuario buscarPor(Long id) {
-        final var usuario = usuarioJpaRepository.findById(id)
+        LOGGER.info("Buscando usuario por id: " + id.toString());
+
+        final var usuario = usuarioJpaRepository.findByIdAndAtivo(id, true)
                 .orElseThrow(() -> new UsuarioException("Usuario com id " + id + " nao encontrado"));
+
         LOGGER.info("Exibindo usuario de id: {} - {}", id, usuario.getNomeUsuario());
         return usuario.toModel();
     }
