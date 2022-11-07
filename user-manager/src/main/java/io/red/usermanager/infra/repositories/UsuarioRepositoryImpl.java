@@ -48,15 +48,15 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
     @Override
     public List<Usuario> listarTodos() {
-        final var usuarios = usuarioJpaRepository.findAll();
-
+        final var usuarios = usuarioJpaRepository.findAllByAtivo(true);
         List<Usuario> usuarioList = new ArrayList<>();
+
         usuarios.forEach(usuario -> {
             usuarioList.add(usuario.toModel());
             LOGGER.info("Listando usuario: {}", usuario.getNomeUsuario());
         });
 
-        LOGGER.info("Listando todos os usuarios com o metodo 'listarTodos()'");
+        LOGGER.info("Listando todos os usuarios ativos com o metodo 'listarTodos()'");
         return usuarioList;
     }
 
