@@ -13,19 +13,19 @@ public class Usuario {
     private String nomeUsuario;
     private String email;
     private String senha;
-    private boolean exluido;
+    private boolean ativo = true;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     public Usuario() {
     }
 
-    public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean exluido, LocalDateTime dataCriacao) {
+    public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean ativo, LocalDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
-        this.exluido = exluido;
+        this.ativo = ativo;
         this.dataCriacao = dataCriacao;
     }
 
@@ -118,7 +118,7 @@ public class Usuario {
         return dataCriacao;
     }
 
-    public boolean isExluido() {
-        return exluido;
+    public boolean isAtivo() {
+        return ativo;
     }
 }

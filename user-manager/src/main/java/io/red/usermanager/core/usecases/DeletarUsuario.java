@@ -10,8 +10,8 @@ public class DeletarUsuario {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public ResponseEntity<String> deletarPor(Long id, boolean excluido){
-        usuarioRepository.delecaoLogicaPor(id, excluido);
+    public ResponseEntity<String> deletarPor(Long id, boolean ativo){
+        usuarioRepository.delecaoLogicaPor(id, ativo);
         return ResponseEntity.ok().body("Deletado com sucesso");
     }
 }

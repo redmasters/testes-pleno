@@ -18,24 +18,24 @@ public class UsuarioEntity {
     private String email;
     private String senha;
 
-    private boolean excluido;
+    private boolean ativo = true;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     public UsuarioEntity() {
     }
 
-    public UsuarioEntity(@Nullable Long id, boolean excluido) {
+    public UsuarioEntity(@Nullable Long id, boolean ativo) {
         this.id = id;
-        this.excluido = excluido;
+        this.ativo = ativo;
     }
 
-    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean excluido, LocalDateTime dataCriacao) {
+    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean ativo, LocalDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
-        this.excluido = excluido;
+        this.ativo = ativo;
         this.dataCriacao = dataCriacao;
     }
 
@@ -107,8 +107,8 @@ public class UsuarioEntity {
         return email;
     }
 
-    public boolean isExcluido() {
-        return excluido;
+    public boolean isAtivo() {
+        return ativo;
     }
 
     public UsuarioEntity toEntity(Long id, String nome, String nomeUsuario, String email, String senha) {
@@ -123,10 +123,20 @@ public class UsuarioEntity {
 
     }
 
-    public UsuarioEntity toDelete(Long id, boolean b) {
+    public UsuarioEntity toDelete(Long id, String nome,
+                                  String nomeUsuario,
+                                  String email,
+                                  String senha,
+                                  boolean ativo,
+                                  LocalDateTime dataCriacao) {
         return new UsuarioEntity(
                 this.id = id,
-                this.excluido = b
+                this.nome = nome,
+                this.nomeUsuario = nomeUsuario,
+                this.email = email,
+                this.senha = senha,
+                this.ativo = ativo,
+                this.dataCriacao = dataCriacao
         );
     }
 }

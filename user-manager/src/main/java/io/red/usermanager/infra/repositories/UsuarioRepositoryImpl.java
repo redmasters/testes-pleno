@@ -8,11 +8,14 @@ import io.red.usermanager.core.repositories.UsuarioRepository;
 import io.red.usermanager.core.validator.ValidaUsuario;
 import io.red.usermanager.infra.entities.UsuarioEntity;
 import io.red.usermanager.infra.repositories.jpa.UsuarioJpaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioRepositoryImpl implements UsuarioRepository {
+    private static final Logger LOGGER = LoggerFactory.getLogger(UsuarioRepositoryImpl.class);
     private final UsuarioJpaRepository usuarioJpaRepository;
 
     public UsuarioRepositoryImpl(UsuarioJpaRepository usuarioJpaRepository) {
@@ -25,11 +28,11 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
         final var isUsuario = usuarioJpaRepository.findAllByNomeUsuario(usuario.getNomeUsuario());
         final var isEmail = usuarioJpaRepository.findAllByEmail(usuario.getEmail());
 
-        if(isUsuario.isPresent()){
+        if (isUsuario.isPresent()) {
             throw new ValidacaoUsuarioException(usuario.getNomeUsuario() + " ja esta em uso.");
         }
 
-        if(isEmail.isPresent()){
+        if (isEmail.isPresent()) {
             throw new ValidacaoUsuarioException(usuario.getEmail() + " esta em uso.");
         }
 
@@ -39,24 +42,35 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
                 usuario.getEmail(),
                 usuario.getSenha()
         );
+        LOGGER.info("Salvando usuario {}", usuario.getNomeUsuario());
         return usuarioJpaRepository.save(usuarioEntity).toModel();
     }
 
     @Override
     public List<Usuario> listarTodos() {
-        final var usuarios = usuarioJpaRepository.findAll();
+       LOGGER.info("Buscando todos os usuarios");
 
+        final var usuarios = usuarioJpaRepository.findAllByAtivo(true);
         List<Usuario> usuarioList = new ArrayList<>();
+
+        LOGGER.info("{} encontrados.", usuarios.size());
         usuarios.forEach(usuario -> {
             usuarioList.add(usuario.toModel());
+            LOGGER.info("Listando usuario: {}", usuario.getNomeUsuario());
         });
+
+        LOGGER.info("Listando todos os usuarios ativos com o metodo 'listarTodos()'");
         return usuarioList;
     }
 
     @Override
     public Usuario buscarPor(Long id) {
-        final var usuario = usuarioJpaRepository.findById(id)
+        LOGGER.info("Buscando usuario por id: " + id.toString());
+
+        final var usuario = usuarioJpaRepository.findByIdAndAtivo(id, true)
                 .orElseThrow(() -> new UsuarioException("Usuario com id " + id + " nao encontrado"));
+
+        LOGGER.info("Exibindo usuario de id: {} - {}", id, usuario.getNomeUsuario());
         return usuario.toModel();
     }
 
@@ -74,20 +88,29 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
                 request.senha()
         );
 
+        LOGGER.info("Editando usuario: id: {} - {}", usuarioEditado.getId(), usuarioEditado.getNomeUsuario());
         return usuarioJpaRepository.save(novoUsuario).toModel();
 
     }
 
     @Override
-    public void delecaoLogicaPor(Long id, boolean excluido) {
+    public void delecaoLogicaPor(Long id, boolean ativo) {
+        LOGGER.info("Buscando usuario de id: {} para deletar", id);
+
         final var usuario = usuarioJpaRepository
                 .findById(id)
                 .orElseThrow(() -> new UsuarioException("Usuario nao encontrado"));
 
         final var deletado = new UsuarioEntity().toDelete(
                 usuario.getId(),
-                excluido
+                usuario.getNome(),
+                usuario.getNomeUsuario(),
+                usuario.getEmail(),
+                usuario.getSenha(),
+                false,
+                usuario.getDataCriacao()
         );
+        LOGGER.info("Deletando usuario: id {} - {}", usuario.getId(), usuario.getNomeUsuario());
         usuarioJpaRepository.save(deletado);
 
     }

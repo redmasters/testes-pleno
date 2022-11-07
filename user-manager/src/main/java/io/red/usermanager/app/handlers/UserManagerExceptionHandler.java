@@ -29,7 +29,7 @@ public class UserManagerExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(value = UsuarioException.class)
     protected ResponseEntity<Object> usuarioEx(RuntimeException ex, WebRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        ProblemType problemType = ProblemType.ENTIDADE_EM_USO;
+        ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
         String detail = ex.getMessage();
 
         Problem problem = createProblemBuilder(status, problemType, detail).userMessage(detail).build();
