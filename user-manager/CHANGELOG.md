@@ -7,10 +7,11 @@ Este formato eh baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1
 ## [Unreleased]
 
 ### Adicionado
-* Logs em cada enpoint-utilizado para debug em producao
+* Logs em cada enpoint utilizado para debug em producao
 * Exclusao Logica de usuarios(usuario inativos)
 * Listagem de usuarios ativos
 
 ### Corrigido
 * Response da exception em Usuario
 * Buscando somente usuarios ativos
+* Listando por id somente usuarios ativos
