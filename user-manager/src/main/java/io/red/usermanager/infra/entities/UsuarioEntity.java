@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "um_usuario")
+@Table(name = "manager_usuario")
 public class UsuarioEntity {
     @Nullable
     @Id
@@ -71,16 +71,6 @@ public class UsuarioEntity {
         this.dataCriacao = dataCriacao;
     }
 
-    public Usuario toModel() {
-        return new Usuario(
-                this.id,
-                this.nome,
-                this.nomeUsuario,
-                this.email,
-                this.senha,
-                this.dataCriacao
-        );
-    }
 
     @Nullable
     public Long getId() {
@@ -137,6 +127,18 @@ public class UsuarioEntity {
                 this.senha = senha,
                 this.ativo = ativo,
                 this.dataCriacao = dataCriacao
+        );
+    }
+
+
+    public Usuario toModel() {
+        return new Usuario(
+                this.id,
+                this.nome,
+                this.nomeUsuario,
+                this.email,
+                this.senha,
+                this.dataCriacao
         );
     }
 }
