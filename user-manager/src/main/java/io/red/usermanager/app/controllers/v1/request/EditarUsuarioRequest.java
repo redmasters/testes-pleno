@@ -9,13 +9,4 @@ public record EditarUsuarioRequest(
         String email,
         String senha
 ) {
-    public Usuario toModel() {
-        return new Usuario(
-                this.id,
-                this.nome,
-                this.nomeUsuario,
-                this.email,
-                this.senha
-        );
-    }
 }

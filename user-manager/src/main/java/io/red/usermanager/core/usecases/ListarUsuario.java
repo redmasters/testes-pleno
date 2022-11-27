@@ -1,7 +1,6 @@
 package io.red.usermanager.core.usecases;
 
 import io.red.usermanager.core.models.Usuario;
-import io.red.usermanager.core.models.UsuarioFilter;
 import io.red.usermanager.core.repositories.UsuarioRepository;
 
 import java.util.List;
@@ -14,11 +13,11 @@ public class ListarUsuario {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public List<Usuario> listarTodos(){
+    public List<Usuario> listarTodos() {
         return usuarioRepository.listarTodos();
     }
 
-    public Usuario usuarioPor(Long id){
+    public Usuario usuarioPor(Long id) {
         return usuarioRepository.buscarPor(id);
     }
 }

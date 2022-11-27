@@ -5,6 +5,7 @@ import io.red.usermanager.app.controllers.v1.response.UsuarioResponse;
 import io.red.usermanager.core.models.Usuario;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 
 public class UsuarioMock {
 
@@ -23,7 +24,8 @@ public class UsuarioMock {
                 "Usuario",
                 "user",
                 "oi@oi.com",
-                LocalDateTime.now()
+                LocalDateTime.of(2022, Month.NOVEMBER, 10, 00, 00)
+
         );
     }
 
@@ -34,7 +36,7 @@ public class UsuarioMock {
                 "user",
                 "oi@oi.com",
                 "123456",
-                LocalDateTime.now()
+                LocalDateTime.of(2022, Month.NOVEMBER, 10, 00, 00)
         );
     }
 
