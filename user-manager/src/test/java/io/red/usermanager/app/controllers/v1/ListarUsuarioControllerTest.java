@@ -1,9 +1,7 @@
 package io.red.usermanager.app.controllers.v1;
 
-import io.red.usermanager.core.repositories.UsuarioRepository;
 import io.red.usermanager.core.usecases.ListarUsuario;
 import io.red.usermanager.mocks.UsuarioMock;
-import org.apiguardian.api.API;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,8 +16,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
