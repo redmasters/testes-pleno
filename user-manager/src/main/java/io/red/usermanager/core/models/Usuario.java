@@ -5,6 +5,8 @@ import io.red.usermanager.infra.entities.UsuarioEntity;
 import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Usuario {
     @Nullable
@@ -13,18 +15,21 @@ public class Usuario {
     private String nomeUsuario;
     private String email;
     private String senha;
+    private Collection<Funcao> funcao = new ArrayList<>();
     private boolean ativo = true;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     public Usuario() {
     }
 
-    public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean ativo, LocalDateTime dataCriacao) {
+    public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha,
+                   Collection<Funcao> funcao, boolean ativo, LocalDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
+        this.funcao = funcao;
         this.ativo = ativo;
         this.dataCriacao = dataCriacao;
     }
@@ -73,16 +78,6 @@ public class Usuario {
         );
     }
 
-    public UsuarioEntity toEntity(Long id, String nome, String nomeUsuario, String email, String senha) {
-        return new UsuarioEntity(
-                this.id = id,
-                this.nome = nome,
-                this.nomeUsuario = nomeUsuario,
-                this.email = email,
-                this.senha = senha
-        );
-    }
-
     public UsuarioResponse toResponse() {
         return new UsuarioResponse(
                 this.id,
@@ -114,11 +109,7 @@ public class Usuario {
         return senha;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
+    public Collection<Funcao> getFuncao() {
+        return funcao;
     }
 }

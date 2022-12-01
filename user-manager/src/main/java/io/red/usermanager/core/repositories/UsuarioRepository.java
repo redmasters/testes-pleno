@@ -15,4 +15,6 @@ public interface UsuarioRepository {
     Usuario editar(EditarUsuarioRequest editarUsuarioRequest);
 
     void delecaoLogicaPor(Long id, boolean exluido);
+
+
 }
