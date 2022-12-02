@@ -3,9 +3,11 @@ package io.red.usermanager.mocks;
 import io.red.usermanager.app.controllers.v1.request.CriarUsuarioRequest;
 import io.red.usermanager.app.controllers.v1.response.UsuarioResponse;
 import io.red.usermanager.core.models.Usuario;
+import io.red.usermanager.infra.entities.UsuarioEntity;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Optional;
 
 public class UsuarioMock {
 
@@ -40,4 +42,13 @@ public class UsuarioMock {
         );
     }
 
+    public static Optional<UsuarioEntity> toEntity() {
+        return Optional.of(new UsuarioEntity(
+                1L,
+                "usuario",
+                "Usuario",
+                "oi@oi.com",
+                "123456"
+        ));
+    }
 }

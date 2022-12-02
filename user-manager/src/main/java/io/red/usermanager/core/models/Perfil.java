@@ -1,14 +1,14 @@
 package io.red.usermanager.core.models;
 
-import io.red.usermanager.infra.entities.FuncaoEntity;
+import io.red.usermanager.infra.entities.PerfilEntity;
 
-public class Funcao {
+public class Perfil {
     private String nome;
 
-    public Funcao() {
+    public Perfil() {
     }
 
-    public Funcao(String nome) {
+    public Perfil(String nome) {
         this.nome = nome;
     }
 
@@ -16,8 +16,8 @@ public class Funcao {
         return nome;
     }
 
-    public FuncaoEntity toEntity() {
-        return new FuncaoEntity(
+    public PerfilEntity toEntity() {
+        return new PerfilEntity(
                 this.nome
         );
 

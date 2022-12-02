@@ -38,7 +38,7 @@ class CriarUsuarioControllerTest {
     static String API_URL = "/v1/usuario";
 
     @Test
-    @DisplayName("Deve criar um usuario valido")
+    @DisplayName("Deve criarPerfil um usuario valido")
     void deveCriarUmUsuarioValido() throws Exception {
         var criarUsuarioRequest = UsuarioMock.toRequest();
         var usuarioResponse = UsuarioMock.toResponse();

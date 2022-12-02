@@ -5,6 +5,11 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Table(name = "manager_usuario")
@@ -18,15 +23,12 @@ public class UsuarioEntity {
     private String email;
     private String senha;
 
+    @OneToMany(fetch = EAGER)
+    private Collection<PerfilEntity> perfil = new ArrayList<>();
     private boolean ativo = true;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     public UsuarioEntity() {
-    }
-
-    public UsuarioEntity(@Nullable Long id, boolean ativo) {
-        this.id = id;
-        this.ativo = ativo;
     }
 
     public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean ativo, LocalDateTime dataCriacao) {
@@ -36,14 +38,6 @@ public class UsuarioEntity {
         this.email = email;
         this.senha = senha;
         this.ativo = ativo;
-        this.dataCriacao = dataCriacao;
-    }
-
-    public UsuarioEntity(String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
-        this.nome = nome;
-        this.nomeUsuario = nomeUsuario;
-        this.email = email;
-        this.senha = senha;
         this.dataCriacao = dataCriacao;
     }
 
@@ -62,46 +56,19 @@ public class UsuarioEntity {
         this.senha = senha;
     }
 
-    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
+    public UsuarioEntity(@Nullable Long id,
+                         String nome, String nomeUsuario,
+                         String email, String senha, Collection<PerfilEntity> perfil, LocalDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
+        this.perfil = perfil;
         this.dataCriacao = dataCriacao;
     }
 
-
-    @Nullable
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public UsuarioEntity toEntity(Long id, String nome, String nomeUsuario, String email, String senha) {
+      public UsuarioEntity toEntity(Long id, String nome, String nomeUsuario, String email, String senha) {
         return new UsuarioEntity(
                 this.id = id,
                 this.nome = nome,
@@ -138,7 +105,40 @@ public class UsuarioEntity {
                 this.nomeUsuario,
                 this.email,
                 this.senha,
+                this.perfil,
                 this.dataCriacao
         );
+    }
+    @Nullable
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public Collection<PerfilEntity> getPerfil() {
+        return perfil;
     }
 }

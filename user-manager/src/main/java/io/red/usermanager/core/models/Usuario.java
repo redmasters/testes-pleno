@@ -15,7 +15,7 @@ public class Usuario {
     private String nomeUsuario;
     private String email;
     private String senha;
-    private Collection<Funcao> funcao = new ArrayList<>();
+    private Collection<Perfil> perfil = new ArrayList<>();
     private boolean ativo = true;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
@@ -23,13 +23,13 @@ public class Usuario {
     }
 
     public Usuario(@Nullable Long id, String nome, String nomeUsuario, String email, String senha,
-                   Collection<Funcao> funcao, boolean ativo, LocalDateTime dataCriacao) {
+                   Collection<Perfil> perfil, boolean ativo, LocalDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
-        this.funcao = funcao;
+        this.perfil = perfil;
         this.ativo = ativo;
         this.dataCriacao = dataCriacao;
     }
@@ -58,17 +58,6 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public UsuarioEntity toEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, LocalDateTime dataCriacao) {
-        return new UsuarioEntity(
-                this.id = id,
-                this.nome = nome,
-                this.nomeUsuario = nomeUsuario,
-                this.email = email,
-                this.senha = senha,
-                this.dataCriacao = dataCriacao
-        );
-    }
-
     public UsuarioEntity toEntity(String nome, String nomeUsuario, String email, String senha) {
         return new UsuarioEntity(
                 this.nome = nome,
@@ -84,7 +73,8 @@ public class Usuario {
                 this.nome,
                 this.nomeUsuario,
                 this.email,
-                this.dataCriacao
+                this.dataCriacao,
+                this.perfil
         );
     }
 
@@ -109,7 +99,7 @@ public class Usuario {
         return senha;
     }
 
-    public Collection<Funcao> getFuncao() {
-        return funcao;
+    public Collection<Perfil> getFuncao() {
+        return perfil;
     }
 }

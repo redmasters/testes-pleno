@@ -1,10 +1,15 @@
 spring:
   application:
     name: user-manager
+  profiles:
+    active: ${PROFILE}
+
+---
+spring:
   datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password:
+    url: ${USER_DB}
+    username: ${USER_USER}
+    password: ${USER_PASS}
     driver-class-name: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
@@ -12,6 +17,9 @@ spring:
   h2:
     console:
       enabled: true
+  config:
+    activate:
+      on-profile: dev
 
 
 springdoc:

@@ -17,9 +17,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation('org.springdoc:springdoc-openapi-ui:1.6.13')
     implementation('org.springdoc:springdoc-openapi-data-rest:1.6.13')
-    implementation 'org.springframework.boot:spring-boot-devtools:3.0.0'
-    runtimeOnly 'com.h2database:h2'
+    implementation 'org.assertj:assertj-core:3.23.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    runtimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {

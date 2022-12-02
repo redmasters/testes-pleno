@@ -1,9 +1,9 @@
 package io.red.usermanager.infra.config;
 
 import io.red.usermanager.core.usecases.*;
-import io.red.usermanager.infra.repositories.FuncaoRepositoryImpl;
+import io.red.usermanager.infra.repositories.PerfilRepositoryImpl;
 import io.red.usermanager.infra.repositories.UsuarioRepositoryImpl;
-import io.red.usermanager.infra.repositories.jpa.FuncaoJpaRepository;
+import io.red.usermanager.infra.repositories.jpa.PerfilJpaRepository;
 import io.red.usermanager.infra.repositories.jpa.UsuarioJpaRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +17,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public FuncaoRepositoryImpl funcaoRepository(FuncaoJpaRepository funcaoJpaRepository){
-        return new FuncaoRepositoryImpl(funcaoJpaRepository);
+    public PerfilRepositoryImpl funcaoRepository(PerfilJpaRepository perfilJpaRepository, UsuarioJpaRepository usuarioJpaRepository){
+        return new PerfilRepositoryImpl(perfilJpaRepository, usuarioJpaRepository);
     }
     @Bean
     public CriarUsuario criarUsuario(UsuarioRepositoryImpl usuario) {
@@ -40,8 +40,12 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public CriarFuncao criarFuncao(FuncaoRepositoryImpl criar){
-        return new CriarFuncao(criar);
+    public CriarPerfil criarFuncao(PerfilRepositoryImpl criar){
+        return new CriarPerfil(criar);
+    }
+
+    @Bean AdicionarPerfil adicionarFuncao(PerfilRepositoryImpl adicionar){
+        return new AdicionarPerfil(adicionar);
     }
 
 
