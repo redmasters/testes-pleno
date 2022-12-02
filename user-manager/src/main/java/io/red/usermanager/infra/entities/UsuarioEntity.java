@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 import static javax.persistence.FetchType.EAGER;
 
@@ -31,7 +30,8 @@ public class UsuarioEntity {
     public UsuarioEntity() {
     }
 
-    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario, String email, String senha, boolean ativo, LocalDateTime dataCriacao) {
+    public UsuarioEntity(@Nullable Long id, String nome, String nomeUsuario,
+                         String email, String senha, boolean ativo, LocalDateTime dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
@@ -105,7 +105,6 @@ public class UsuarioEntity {
                 this.nomeUsuario,
                 this.email,
                 this.senha,
-                this.perfil,
                 this.dataCriacao
         );
     }

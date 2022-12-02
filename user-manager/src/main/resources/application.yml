@@ -3,32 +3,3 @@ spring:
     name: user-manager
   profiles:
     active: ${PROFILE}
-
----
-spring:
-  datasource:
-    url: ${USER_DB}
-    username: ${USER_USER}
-    password: ${USER_PASS}
-    driver-class-name: org.h2.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-
-  h2:
-    console:
-      enabled: true
-  config:
-    activate:
-      on-profile: dev
-
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-  api-docs:
-    path: /api-docs
-
-server:
-  port: 8090
-  servlet:
-    context-path: /user-manager

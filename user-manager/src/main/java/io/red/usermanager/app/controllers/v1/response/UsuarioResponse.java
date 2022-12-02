@@ -7,8 +7,7 @@ public record UsuarioResponse(
         String nome,
         String nomeUsuario,
         String email,
-        LocalDateTime dataCriacao,
-        java.util.Collection<io.red.usermanager.core.models.Perfil> perfil
+        LocalDateTime dataCriacao
 ) {
     public record Perfil(
             Long id,

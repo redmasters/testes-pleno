@@ -1,11 +1,4 @@
 spring:
-  application:
-    name: user-manager
-  profiles:
-    active: ${PROFILE}
-
----
-spring:
   datasource:
     url: ${USER_DB}
     username: ${USER_USER}
@@ -14,8 +7,6 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
 
   h2:
     console:
@@ -23,7 +14,7 @@ spring:
 
   config:
     activate:
-      on-profile: dev
+      on-profile: prod
 
 
 springdoc:

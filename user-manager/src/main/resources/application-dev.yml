@@ -1,11 +1,4 @@
 spring:
-  application:
-    name: user-manager
-  profiles:
-    active: ${PROFILE}
-
----
-spring:
   datasource:
     url: ${USER_DB}
     username: ${USER_USER}

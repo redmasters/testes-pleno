@@ -73,8 +73,7 @@ public class Usuario {
                 this.nome,
                 this.nomeUsuario,
                 this.email,
-                this.dataCriacao,
-                this.perfil
+                this.dataCriacao
         );
     }
 
