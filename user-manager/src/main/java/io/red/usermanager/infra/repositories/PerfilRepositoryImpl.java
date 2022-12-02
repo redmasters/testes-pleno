@@ -1,5 +1,6 @@
 package io.red.usermanager.infra.repositories;
 
+import io.red.usermanager.core.exceptions.UsuarioException;
 import io.red.usermanager.core.models.Perfil;
 import io.red.usermanager.core.repositories.PerfilRepository;
 import io.red.usermanager.infra.entities.PerfilEntity;
@@ -24,17 +25,27 @@ public class PerfilRepositoryImpl implements PerfilRepository {
 
     @Override
     public Perfil criarPerfil(Perfil perfil) {
-        PerfilEntity novaFuncao = new Perfil(
-                perfil.getNome()
-        ).toEntity();
-        LOGGER.info("Salvando funcao {}", perfil);
-        return perfilJpaRepository.save(novaFuncao).toModel();
+        final var perfilExiste = perfilJpaRepository.existsByNome(perfil.getNome());
+
+        if (!perfilExiste) {
+
+            PerfilEntity novaFuncao = new Perfil(
+                    perfil.getNome()
+            ).toEntity();
+            LOGGER.info("Salvando funcao {}", perfil);
+            return perfilJpaRepository.save(novaFuncao).toModel();
+        }
+
+        throw new UsuarioException("Perfil ja existe");
     }
 
     @Override
     public void adicionarPerfil(String nomeUsuario, String nomeFuncao) {
         final var usuario = usuarioJpaRepository.findByNomeUsuario(nomeUsuario);
         final var funcao = perfilJpaRepository.findByNome(nomeFuncao);
-        usuario.ifPresent(usuarioEntity -> usuarioEntity.getPerfil().add(funcao));
+        if (usuario.isPresent()) {
+            final var user = usuario.get();
+            user.getPerfil().add(funcao);
+        }
     }
 }
